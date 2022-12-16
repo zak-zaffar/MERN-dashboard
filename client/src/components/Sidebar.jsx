@@ -120,10 +120,10 @@ const Sidebar = ({
             "& .MuiDrawer-paper": {
               color: theme.palette.secondary[200],
               backgroundColor: theme.palette.background.alt,
-              boxSizing: "border-box",
+              boxSixing: "border-box",
               borderWidth: isNonMobile ? 0 : "2px",
-              width: drawerWidth
-            }
+              width: drawerWidth,
+            },
           }}
         >
           <Box width="100%">
@@ -131,11 +131,11 @@ const Sidebar = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    ECOMVISON
+                    ECOMVISION
                   </Typography>
                 </Box>
-                {isNonMobile && (
-                  <IconButton onClick={() => setIsSidebarOpen(!setIsSidebarOpen)}>
+                {!isNonMobile && (
+                  <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <ChevronLeft />
                   </IconButton>
                 )}
@@ -145,40 +145,50 @@ const Sidebar = ({
               {navItems.map(({ text, icon }) => {
                 if (!icon) {
                   return (
-                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem"}}>
+                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
                       {text}
                     </Typography>
-                  )
+                  );
                 }
-                const lcText = text.toLowerCase()
+                const lcText = text.toLowerCase();
+
 
                 return (
                   <ListItem key={text} disablePadding>
                     <ListItemButton
                       onClick={() => {
-                        navigate(`/${lcText}`)
-                        setActive(lcText)
+                        navigate(`/${lcText}`);
+                        setActive(lcText);
                       }}
                       sx={{
-                        backgroundColor: active === lcText ? theme.palette.secondary[300] : "transparent",
-                        color: active === lcText ? theme.palette.primary[600] : theme.palette.secondary[100],
+                        backgroundColor:
+                          active === lcText
+                            ? theme.palette.secondary[300]
+                            : "transparent",
+                        color:
+                          active === lcText
+                            ? theme.palette.primary[600]
+                            : theme.palette.secondary[100],
                       }}
                     >
                       <ListItemIcon
                         sx={{
                           ml: "2rem",
-                          color: active === lcText ? theme.palette.primary[600] : theme.palette.secondary[200],
+                          color:
+                            active === lcText
+                              ? theme.palette.primary[600]
+                              : theme.palette.secondary[200],
                         }}
                       >
                         {icon}
                       </ListItemIcon>
                       <ListItemText primary={text} />
                       {active === lcText && (
-                        <ChevronRightOutlined sx={{ ml: "auto"}} />
+                        <ChevronRightOutlined sx={{ ml: "auto" }} />
                       )}
                     </ListItemButton>
                   </ListItem>
-                )
+                );
               })}
             </List>
           </Box>
