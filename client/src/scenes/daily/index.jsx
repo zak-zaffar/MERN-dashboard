@@ -53,6 +53,7 @@ const Daily = () => {
         <Header title="DAILY SALES" subtitle="Chart of Daily Sales" />
         <Box height="75vh">
             <Box display="flex" justifyContent="flex-end">
+                <Box>
                 <DatePicker 
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
@@ -60,7 +61,9 @@ const Daily = () => {
                     startDate={startDate}
                     endDate={endDate}
                 />
-                <DatePicker 
+                </Box>
+                <Box>
+                    <DatePicker 
                     selected={endDate}
                     onChange={(date) => setEndDate(date)}
                     selectsStart
@@ -68,6 +71,8 @@ const Daily = () => {
                     endDate={endDate}
                     minDate={startDate}
                 />
+                </Box>
+                
             </Box>
             {data ? (
           <ResponsiveLine
